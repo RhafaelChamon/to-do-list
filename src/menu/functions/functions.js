@@ -53,27 +53,25 @@ export async function changeName(task) { // Altera o nome da tarefa recebida
 }
 
 export async function changeStatus(task) { // Altera o status da tarefa recebida
-    do {
-        let newStatus = await select({
-            message: 'Selecione o status',
-            options: [
-                { value: 'concluída', label: 'concluída' },
-                { value: 'em andamento', label: 'em andamento' },
-                { value: 'cancelada', label: 'cancelada' }
-            ]
-        })
+    let newStatus = await select({
+        message: 'Selecione o status',
+        options: [
+            { value: 'concluída', label: 'concluída' },
+            { value: 'em andamento', label: 'em andamento' },
+            { value: 'cancelada', label: 'cancelada' }
+        ]
+    })
 
-        if (isCancel(newStatus)) return task.status
+    if (isCancel(newStatus)) return task.status
 
-        // Faz a troca de status e salva
-        let taskList = manageTaskList.getList() 
-        taskList.find(item => {
-            if (item.taskName === task.taskName) item.status = newStatus
-        })
-        manageTaskList.saveList(taskList)
-        
-        return newStatus
-    } while (true);
+    // Faz a troca de status e salva
+    let taskList = manageTaskList.getList() 
+    taskList.find(item => {
+        if (item.taskName === task.taskName) item.status = newStatus
+    })
+    manageTaskList.saveList(taskList)
+    
+    return newStatus
 }
 
 export async function deleteTask(task) { // Deleta a terefa recebida
