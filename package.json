@@ -1,0 +1,16 @@
+{
+  "name": "To-Do List",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/manager/tasks-list.js"
+  },
+  "keywords": [],
+  "author": "Rhafael Chamon",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@clack/prompts": "^1.7.0",
+    "chalk": "^6.0.0"
+  }
+}
